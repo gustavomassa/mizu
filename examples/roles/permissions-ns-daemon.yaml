@@ -16,7 +16,7 @@ rules:
   verbs: ["get", "list", "watch", "create", "delete"]
 - apiGroups: ["apps"]
   resources: ["daemonsets"]
-  verbs: ["get", "create", "patch", "delete"]
+  verbs: ["get", "create", "patch", "delete", "list"]
 - apiGroups: [""]
   resources: ["services/proxy"]
   verbs: ["get"]
@@ -41,6 +41,12 @@ rules:
 - apiGroups: ["", "apps", "extensions"]
   resources: ["endpoints"]
   verbs: ["get", "list", "watch"]
+- apiGroups: ["rbac.authorization.k8s.io"]
+  resources: ["roles"]
+  verbs: ["get", "create", "delete"]
+- apiGroups: ["rbac.authorization.k8s.io"]
+  resources: ["rolebindings"]
+  verbs: ["get", "create", "delete"]
 ---
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
