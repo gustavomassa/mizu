@@ -2,7 +2,7 @@ package config
 
 import (
 	"fmt"
-	"github.com/op/go-logging"
+	log "github.com/sirupsen/logrus"
 	"github.com/up9inc/mizu/cli/config/configStructs"
 	"github.com/up9inc/mizu/cli/mizu"
 	v1 "k8s.io/api/core/v1"
@@ -37,7 +37,7 @@ type ConfigStruct struct {
 }
 
 func(config *ConfigStruct) validate() error {
-	if _, err := logging.LogLevel(config.LogLevelStr); err != nil {
+	if _, err := log.ParseLevel(config.LogLevelStr); err != nil {
 		return fmt.Errorf("%s is not a valid log level, err: %v", config.LogLevelStr, err)
 	}
 
@@ -71,7 +71,7 @@ func (config *ConfigStruct) KubeConfigPath() string {
 	return filepath.Join(home, ".kube", "config")
 }
 
-func (config *ConfigStruct) LogLevel() logging.Level {
-	logLevel, _ := logging.LogLevel(config.LogLevelStr)
+func (config *ConfigStruct) LogLevel() log.Level {
+	logLevel, _ := log.ParseLevel(config.LogLevelStr)
 	return logLevel
 }

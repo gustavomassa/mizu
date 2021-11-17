@@ -6,6 +6,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	log "github.com/sirupsen/logrus"
 	"io/ioutil"
 	"mizuserver/pkg/api"
 	"mizuserver/pkg/config"
@@ -33,7 +34,6 @@ import (
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
-	"github.com/op/go-logging"
 	basenine "github.com/up9inc/basenine/client/go"
 	"github.com/up9inc/mizu/shared"
 	"github.com/up9inc/mizu/shared/logger"
@@ -397,10 +397,10 @@ func getSyncEntriesConfig() *shared.SyncEntriesConfig {
 	return syncEntriesConfig
 }
 
-func determineLogLevel() (logLevel logging.Level) {
-	logLevel, err := logging.LogLevel(os.Getenv(shared.LogLevelEnvVar))
+func determineLogLevel() (logLevel log.Level) {
+	logLevel, err := log.ParseLevel(os.Getenv(shared.LogLevelEnvVar))
 	if err != nil {
-		logLevel = logging.INFO
+		logLevel = log.InfoLevel
 	}
 
 	return

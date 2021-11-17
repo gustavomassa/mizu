@@ -2,14 +2,13 @@ package main
 
 import (
 	"bufio"
+	log "github.com/sirupsen/logrus"
 	"io/ioutil"
 	"os"
 	"path"
 	"plugin"
 	"sort"
 	"strings"
-
-	"github.com/op/go-logging"
 
 	"github.com/go-errors/errors"
 	"github.com/up9inc/mizu/shared/logger"
@@ -75,7 +74,7 @@ func loadExtensions() ([]*tapApi.Extension, error) {
 }
 
 func internalRun() error {
-	logger.InitLoggerStderrOnly(logging.DEBUG)
+	logger.InitLoggerStderrOnly(log.DebugLevel)
 
 	opts := tap.TapOpts{
 		HostMode: false,

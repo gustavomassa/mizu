@@ -3,7 +3,7 @@ package kubernetes
 import (
 	"context"
 	"fmt"
-	"github.com/op/go-logging"
+	log "github.com/sirupsen/logrus"
 	"github.com/up9inc/mizu/shared"
 	"github.com/up9inc/mizu/shared/debounce"
 	"github.com/up9inc/mizu/shared/logger"
@@ -39,7 +39,7 @@ type TapperSyncerConfig struct {
 	AgentImage               string
 	TapperResources          shared.Resources
 	ImagePullPolicy          core.PullPolicy
-	LogLevel                 logging.Level
+	LogLevel                 log.Level
 	IgnoredUserAgents        []string
 	MizuApiFilteringOptions  api.TrafficFilteringOptions
 	MizuServiceAccountExists bool

@@ -1,7 +1,7 @@
 package shared
 
 import (
-	"github.com/op/go-logging"
+	log "github.com/sirupsen/logrus"
 	"github.com/up9inc/mizu/shared/logger"
 	"github.com/up9inc/mizu/tap/api"
 	"io/ioutil"
@@ -37,7 +37,7 @@ type MizuAgentConfig struct {
 	TargetNamespaces        []string                    `json:"targetNamespaces"`
 	AgentImage              string                      `json:"agentImage"`
 	PullPolicy              string                      `json:"pullPolicy"`
-	LogLevel                logging.Level               `json:"logLevel"`
+	LogLevel                log.Level                   `json:"logLevel"`
 	IgnoredUserAgents       []string                    `json:"ignoredUserAgents"`
 	TapperResources         Resources                   `json:"tapperResources"`
 	MizuResourcesNamespace  string                      `json:"mizuResourceNamespace"`

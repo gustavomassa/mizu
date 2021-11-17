@@ -1,16 +1,12 @@
 package logger
 
 import (
+	log "github.com/sirupsen/logrus"
+	"io"
 	"os"
-
-	"github.com/op/go-logging"
 )
 
-var Log = logging.MustGetLogger("mizu")
-
-var format = logging.MustStringFormatter(
-	`%{time:2006-01-02T15:04:05.999Z-07:00} %{level:-5s} ▶ %{message} ▶ %{pid} %{shortfile} %{shortfunc}`,
-)
+var Log = log.New()
 
 func InitLogger(logPath string) {
 	f, err := os.OpenFile(logPath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
@@ -18,21 +14,19 @@ func InitLogger(logPath string) {
 		Log.Infof("Failed to open mizu log file: %v, err %v", logPath, err)
 	}
 
-	fileLog := logging.NewLogBackend(f, "", 0)
-	consoleLog := logging.NewLogBackend(os.Stderr, "", 0)
+	fileLogger := log.New()
+	fileLogger.SetOutput(f)
+	fileWriter := fileLogger.WriterLevel(log.DebugLevel)
 
-	backend2Formatter := logging.NewBackendFormatter(fileLog, format)
+	consoleLogger := log.New()
+	consoleLogger.SetOutput(os.Stderr)
+	consoleWriter := consoleLogger.WriterLevel(log.InfoLevel)
 
-	backend1Leveled := logging.AddModuleLevel(consoleLog)
-	backend1Leveled.SetLevel(logging.INFO, "")
-
-	logging.SetBackend(backend1Leveled, backend2Formatter)
+	mw := io.MultiWriter(fileWriter, consoleWriter)
+	Log.SetOutput(mw)
 }
 
-func InitLoggerStderrOnly(level logging.Level) {
-	backend := logging.NewLogBackend(os.Stderr, "", 0)
-	backendFormatter := logging.NewBackendFormatter(backend, format)
-
-	logging.SetBackend(backendFormatter)
-	logging.SetLevel(level, "")
+func InitLoggerStderrOnly(level log.Level) {
+	Log.SetOutput(os.Stderr)
+	Log.SetLevel(level)
 }
