@@ -10,7 +10,7 @@ export GOGC=12800
 export NODE_NAME=dev
 
 # The parameter -C 4 keeps the descriptor 3 opened
-exec sudo -C 4 "$DLV" --only-same-user=false --headless --listen=:2345 --accept-multiclient exec ./agent/build/mizuagent -- \
+exec sudo -C 4 "$DLV" --only-same-user=false --headless=true --listen=:2345 --accept-multiclient exec ./agent/build/mizuagent -- \
         -i any \
         --tap \
         --api-server-address ws://localhost:8899/wsTapper & \
