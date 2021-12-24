@@ -19,9 +19,14 @@
             "command": "rm -rf entries/ && mkdir -p entries && rm -rf pprof/* && make clean-agent && make agent-debug"
         },
         {
-            "label": "mizuagent-tapper",
+            "label": "agent-tapper",
             "type": "shell",
             "command": "./agent.sh",
+        },
+        {
+            "label": "agent-tapper-debug",
+            "type": "shell",
+            "command": "./agent_debug.sh",
         },
         {
             "label": "mizu-front",
