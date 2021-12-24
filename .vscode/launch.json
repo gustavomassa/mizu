@@ -13,13 +13,16 @@
             "cwd": "${workspaceFolder}",
             "program": "${workspaceFolder}/cli/mizu.go",
             "args": [
-                "tap", 
-                "-n", 
+                "tap",
+                "-n",
                 "sock-shop"
             ]
         },
         {
-            "preLaunchTask": "build-agent",
+            "preLaunchTask": [
+                "build-agent",
+                "agent-tapper"
+            ],
             "name": "Debug API Server",
             "type": "go",
             "request": "launch",
@@ -35,10 +38,11 @@
         {
             "name": "Debug Tapper",
             "type": "go",
-            "debugAdapter": "dlv-dap",
+            "debugAdapter": "legacy",
             "request": "attach",
             "mode": "remote",
-            "port": 2345
-        }
+            "port": 2345,
+
+        },
     ]
 }

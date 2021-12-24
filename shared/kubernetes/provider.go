@@ -205,7 +205,9 @@ func (provider *Provider) GetMizuApiServerPodObject(opts *ApiServerOptions, moun
 		return nil, errors.New(fmt.Sprintf("invalid memory request for %s container", opts.PodName))
 	}
 
-	command := []string{"./mizuagent", "--api-server"}
+	//TODO: Add a debug flag
+	//TODO: Add a wait for debug flag - remove --continue
+	command := []string{"/go/bin/dlv", "--headless=true", "--continue", "--only-same-user=false", "--listen=:2345", "--accept-multiclient", "--api-version=2", "exec", "./mizuagent", "--", "--api-server"}
 	if opts.IsNamespaceRestricted {
 		command = append(command, "--namespace", opts.Namespace)
 	}
