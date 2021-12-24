@@ -1,0 +1,32 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build-extensions",
+            "type": "shell",
+            "command": "make clean-agent && make extensions-debug"
+        },
+        {
+            "label": "clean-agent",
+            "type": "shell",
+            "command": "rm -rf entries/ && mkdir -p entries && rm -rf pprof/* && make clean-agent"
+        },
+        {
+            "label": "build-agent",
+            "type": "shell",
+            "command": "rm -rf entries/ && mkdir -p entries && rm -rf pprof/* && make clean-agent && make agent-debug"
+        },
+        {
+            "label": "mizuagent-tapper",
+            "type": "shell",
+            "command": "./agent.sh",
+        },
+        {
+            "label": "mizu-front",
+            "type": "shell",
+            "command": "cd ui/ && cp .env.example .env && npm install && npm start",
+        },
+    ]
+}
