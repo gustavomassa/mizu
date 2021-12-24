@@ -23,6 +23,7 @@ import (
 	"path/filepath"
 	"plugin"
 	"sort"
+	"strings"
 	"syscall"
 	"time"
 
@@ -196,7 +197,11 @@ func startBasenineServer(host string, port string) {
 }
 
 func loadExtensions() {
-	dir, _ := filepath.Abs(filepath.Dir(os.Args[0]))
+	arg := os.Args[0]
+	if isDebug() && strings.HasPrefix(arg, "/tmp/__debug_bin") {
+		arg = "./agent/build/"
+	}
+	dir, _ := filepath.Abs(filepath.Dir(arg))
 	extensionsDir := path.Join(dir, "./extensions/")
 
 	files, err := ioutil.ReadDir(extensionsDir)
@@ -493,4 +498,12 @@ func startMizuTapperSyncer(ctx context.Context, provider *kubernetes.Provider) (
 	}()
 
 	return tapperSyncer, nil
+}
+
+func isDebug() bool {
+	debug := flag.Lookup("debug")
+	if debug != nil {
+		return debug.Value.String() == "true"
+	}
+	return false
 }
