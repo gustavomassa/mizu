@@ -19,6 +19,11 @@
             "command": "rm -rf entries/ && mkdir -p entries && rm -rf pprof/* && make clean-agent && make agent-debug"
         },
         {
+            "label": "cli",
+            "type": "shell",
+            "command": "make cli-debug && ./cli/bin/mizu__ tap -n sock-shop"
+        },
+        {
             "label": "agent-tapper",
             "type": "shell",
             "command": "./agent.sh",

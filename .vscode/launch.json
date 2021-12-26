@@ -23,7 +23,7 @@
                 "build-agent",
                 "agent-tapper"
             ],
-            "name": "Debug API Server",
+            "name": "Debug API Server Local",
             "type": "go",
             "request": "launch",
             "mode": "debug",
@@ -36,7 +36,7 @@
             ]
         },
         {
-            "name": "Debug Tapper",
+            "name": "Debug API Server K8S",
             "type": "go",
             "debugAdapter": "legacy",
             "request": "attach",
