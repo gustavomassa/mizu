@@ -38,5 +38,20 @@
             "type": "shell",
             "command": "cd ui/ && cp .env.example .env && npm install && npm start",
         },
+        {
+            "label": "docker-build",
+            "type": "shell",
+            "command": "docker build -f debug.Dockerfile -t gustavomassa/mizuagent_debug:latest . && minikube image load gustavomassa/mizuagent_debug:latest",
+        },
+        {
+            "label": "port-forward-api-server",
+            "type": "shell",
+            "command": "kubectl port-forward pod/mizu-api-server 2345:2345 -n mizu",
+        },
+        {
+            "label": "log-api-server",
+            "type": "shell",
+            "command": "stern mizu-api-server -n mizu",
+        },
     ]
 }
