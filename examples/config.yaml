@@ -1,0 +1,43 @@
+tap:
+    upload-interval: 10
+    regex: .*
+    gui-port: 8899
+    proxy-host: 127.0.0.1
+    namespaces: []
+    analysis: false
+    all-namespaces: false
+    regex-masking: []
+    ignored-user-agents: []
+    no-redact: false
+    max-entries-db-size: 200MB
+    dry-run: false
+    workspace: ""
+    traffic-validation-file: ""
+    contract: ""
+    ask-upload-confirmation: true
+    api-server-resources:
+        cpu-limit: 750m
+        memory-limit: 1Gi
+        cpu-requests: 50m
+        memory-requests: 50Mi
+    tapper-resources:
+        cpu-limit: 750m
+        memory-limit: 1Gi
+        cpu-requests: 50m
+        memory-requests: 50Mi
+    daemon: false
+version:
+    debug: false
+view:
+    gui-port: 8899
+logs:
+    file: ""
+auth:
+    env-name: up9.app
+    token: ""
+image-pull-policy: Never
+agent-image: docker.io/gustavomassa/mizuagent_debug:latest
+mizu-resources-namespace: mizu
+telemetry: false
+dump-logs: false
+kube-config-path: ""
