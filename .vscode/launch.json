@@ -44,5 +44,14 @@
             "port": 2345,
 
         },
+        {
+            "preLaunchTask": "",
+            "name": "Debug UI",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:3000",   
+            "cleanUp": "wholeBrowser",
+            "disableNetworkCache": true,
+        },
     ]
 }
