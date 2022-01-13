@@ -45,7 +45,6 @@
 
         },
         {
-            "preLaunchTask": "",
             "name": "Debug UI",
             "type": "chrome",
             "request": "launch",

@@ -53,5 +53,10 @@
             "type": "shell",
             "command": "stern mizu-api-server -n mizu",
         },
+        {
+            "label": "test-agent",
+            "type": "shell",
+            "command": "cd agent/ && go test -v ./..."
+        }
     ]
 }
