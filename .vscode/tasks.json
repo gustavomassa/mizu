@@ -4,6 +4,11 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "build-cli",
+            "type": "shell",
+            "command": "make clean-cli && make cli-debug"
+        },
+        {
             "label": "build-extensions",
             "type": "shell",
             "command": "make clean-agent && make extensions-debug"
@@ -12,6 +17,11 @@
             "label": "clean-agent",
             "type": "shell",
             "command": "rm -rf entries/ && mkdir -p entries && rm -rf pprof/* && make clean-agent"
+        },
+        {
+            "label": "clean-cli",
+            "type": "shell",
+            "command": "mizu clean && make clean-cli"
         },
         {
             "label": "build-agent",
